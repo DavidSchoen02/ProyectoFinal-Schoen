@@ -1,73 +1,137 @@
-// Simulador interactivo de adivinanza de números
+const cart = []
+let total = 0
+let pregunta = true
+const products = [
+  {
+    id: 0,
+    nombre: "Tv",
+    precio: 100000
+  },
+  {
+    id: 1,
+    nombre: "Heladera",
+    precio: 500000
+  },
+  {
+    id: 2,
+    nombre: "Cafetera",
+    precio: 10000
+  },
+]
 
-// Generar un número aleatorio entre 1 y 100
-const numeroSecreto = Math.floor(Math.random() * 100) + 1;
-
-// Variable para almacenar el número de intentos
-let intentos = 0;
-
-// Función para iniciar el simulador
-function iniciarSimulador() {
-  // Reiniciar los valores iniciales
-  intentos = 0;
-
-  // Pedir al usuario que ingrese el nivel de dificultad
-  let nivel = "";
-  do {
-    nivel = prompt("Selecciona el nivel de dificultad: \n Facil \n Dificil \n Experto").toLowerCase();
-  } while (nivel !== "facil" && nivel !== "dificil" && nivel !== "experto");
-
-  // Obtener el número máximo de intentos según el nivel de dificultad seleccionado
-  let maxIntentos;
-  switch (nivel) {
-    case "facil":
-      maxIntentos = 10;
-      break;
-    case "dificil":
-      maxIntentos = 5;
-      break;
-    case "experto":
-      maxIntentos = 3;
-      break;
+function addProduct() {
+  const id = prompt("Ingresa el id del producto a agregar")
+  const product = products.find(product => product.id === parseInt(id))
+  if (!product) {
+    alert("No se encontro producto con el id indicado")
+    return
   }
 
-  // Llamar a la función para adivinar el número
-  adivinarNumero(maxIntentos);
+  total = 0
+  cart.push(product)
+  alert(`Se ha agregado el producto ${product.nombre}`)
+
+  cart.forEach(product => total += product.precio)
+
+  alert(`El total del carrito es $${total}`)
+
 }
 
-// Función para adivinar el número
-function adivinarNumero(maxIntentos) {
-  // Incrementar el número de intentos
-  intentos++;
+function deleteProduct() {
+  const id = prompt("Ingresa el id del producto a eliminar")
+  const deletedProduct = cart.find(product => product.id === parseInt(id))
 
-  // Verificar si se alcanzó el número máximo de intentos
-  if (intentos > maxIntentos) {
-    // El usuario agotó todos los intentos
-    alert(` PERDISTE \n ¡Agotaste todos tus intentos! \n El número secreto era ${numeroSecreto}.`);
+  if (deletedProduct) {
+    cart.splice(cart.indexOf(deletedProduct), 1)
+    total -= deletedProduct.precio
+    alert(`Se borro el producto ${deletedProduct.nombre}`)
   } else {
-    // Pedir al usuario que ingrese un número
-  const numeroUsuario = parseInt(prompt(`Intento ${intentos}/${maxIntentos}. \n Ingresa un número entre 1 y 100:`));
-
-    // Verificar si el número ingresado es válido
-    if (isNaN(numeroUsuario) || numeroUsuario < 1 || numeroUsuario > 100) {
-      alert("¡Número inválido! \n Debes ingresar un número entre 1 y 100.");
-      adivinarNumero(maxIntentos); // Llamar de nuevo a la función para adivinar el número
-    } else {
-      // Verificar si el número ingresado es el número secreto
-      if (numeroUsuario === numeroSecreto) {
-        // El usuario adivinó el número
-        alert(` GANASTE \n ¡Felicitaciones!  \n Adivinaste el número en ${intentos} intentos.`);
-      } else {
-        // El usuario no adivinó el número, dar pistas
-        let pista = numeroUsuario < numeroSecreto ? "mayor" : "menor";
-        alert(`Intento incorrecto.\n El número secreto es ${pista} que ${numeroUsuario}.`);
-
-        // Llamar de nuevo a la función para adivinar el número
-        adivinarNumero(maxIntentos);
-      }
-    }
+    alert("No se encontro producto con ese id")
   }
+
+
+
 }
 
-// Iniciar el simulador al cargar la página
-iniciarSimulador();
+function showProducts() {
+  let listaProductos = "Productos:"
+
+  products.forEach(product => {
+    listaProductos += `
+  ${product.nombre}
+   id: ${product.id}
+   precio: $${product.precio}`
+  })
+
+  alert(listaProductos)
+
+}
+
+function showCart() { 
+  let listaCarrito = "Productos:"
+
+  cart.forEach(product => {
+    listaCarrito += `
+  ${product.nombre}
+   id: ${product.id}
+   precio: $${product.precio}`
+  })
+
+  listaCarrito += ` 
+  Total carrito: $${total}`
+
+  alert(listaCarrito)
+}
+
+function deleteCart() {
+cart.splice(0, cart.length)
+alert("Se vacio el carrito")
+total = 0;
+showCart()
+}
+
+function endProgram() {
+  pregunta = false;
+}
+
+
+do {
+  const opcion = prompt(`
+Menu:
+
+  1)Mostrar productos
+  2)Agregar Producto
+  3)Ver Carrito
+  4)Eliminar Producto
+  5)Vaciar Carrito
+  6)Salir`)
+
+
+  switch (opcion) {
+    case ("1"):
+      showProducts()
+      break;
+
+    case ("2"):
+      addProduct()
+      break;
+
+    case ("3"):
+      showCart()
+      break;
+
+    case ("4"):
+      deleteProduct()
+      break;
+
+    case ("5"):
+      deleteCart()
+      break;
+
+    case ("6"):
+      endProgram()
+      break;
+
+  }
+
+} while (pregunta)
