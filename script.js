@@ -97,9 +97,10 @@ function endProgram() {
 
 do {
   const opcion = prompt(`
-Menu:
+  ¡Bienvenido a Tienda Konton!
+        Elige tu opcion:
 
-  1)Mostrar productos
+  1)Ver Productos
   2)Agregar Producto
   3)Ver Carrito
   4)Eliminar Producto
