@@ -20,24 +20,37 @@ const noResults = document.getElementById("noResults");
 
 const handleSearch = () => {
     const searchIterm = searchInput.value.toLowerCase();
-    const filteredProductos = productos.filter((producto) => producto.nombre.toLowerCase().startsWith
-    (searchIterm));
-    
+    const filteredProductos = productos.filter((producto) =>
+        producto.nombre.toLowerCase().startsWith(searchIterm)
+    );
+
     resultList.innerHTML = "";
 
-    if (filteredProductos.length === 0){
+    if (filteredProductos.length === 0) {
         noResults.style.display = "block";
-    } else{
-    filteredProductos.forEach((producto) => {
-        const li = document.createElement("li");
-        li.textContent = producto.nombre;
-        resultList.appendChild(li);
-    });
-    noResults.style.display = "none";
+    } else {
+        filteredProductos.forEach((producto) => {
+            const card = document.createElement("div");
+
+            const li = document.createElement("li");
+            li.textContent = producto.nombre;
+            card.appendChild(li);
+
+            const imagen = document.createElement("img");
+            imagen.src = producto.img;
+            imagen.classList.add("card");
+            card.appendChild(imagen);
+
+            resultList.appendChild(card);
+        });
+        noResults.style.display = "none";
     }
-    if(searchInput.value === ""){
+    if (searchInput.value === "") {
         resultList.innerHTML = "";
     }
 };
 
 searchInput.addEventListener("input", handleSearch);
+
+
+
