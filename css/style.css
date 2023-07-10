@@ -37,7 +37,7 @@ body {
     background-size: cover;
     background-position: center;
     height: 100vh;
-    background-image: url("/img/shopkonton.jpg");
+    background-image: url("../img/shopkonton.jpg");
 }
 
 .banner-container {
