@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+@font-face {
+
+    font-family: 'nanum';
+    src: url(../multimedia/Fonts/NanumPenScript-Regular.ttf);
+}
+
+/*Reset*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Nanum Pen Script', cursive;
+}
+
+
 body {
     margin: 0px;
 }
@@ -19,16 +36,18 @@ body {
 .navbar-logo {
     justify-self: start;
     justify-content: center;
-    margin-left: 20px;
-    color: #fff;
+    margin-left: 30px;
+    font-size: 35px;
     margin-top: 4vh;
+    color: #070707;
     cursor: pointer;
+    
 }
 
 .ver-carrito {
-    font-size: 25px;
+    font-size: 35px;
     margin-right: 20px;
-    margin-top: 3.5vh;
+    margin-top: 4vh;
     cursor: pointer;
 }
 
@@ -48,13 +67,13 @@ body {
 .banner h1 {
     margin: 0;
     color: white;
-    text-shadow: 1px 1px 3px rebeccapurple;
-    font-size: 45px;
+    text-shadow: 1px 1px 4px rgba(165, 84, 247, 0.911);
+    font-size: 90px;
     font-weight: bold;
 }
 
 .banner p {
-    font-size: 25px;
+    font-size: 35px;
     color: black;
     opacity: 0.7;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
@@ -172,8 +191,8 @@ body {
 .cantidad-carrito {
     background-color: red;
     color:white;
-    border-radius:50%;
-    font-size:12px;
+    border-radius:70%;
+    font-size:15px;
     padding: 4px;
     top: 37px;
     right: 14px;
@@ -189,4 +208,50 @@ body {
 /*Suma*/
 .sumar {
     cursor: pointer;
+}
+
+/*Footer*/
+.footer {
+    display: block;
+    justify-content: center !important;
+    background-color: #edb2dbd0;
+    padding: 0.5rem !important;
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.footer-redes {    
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-top: 0;
+    width: 200px;
+}
+
+.footer-redes a {
+    margin: 4px;
+    padding: 2px;
+}
+
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    margin-top: 0.5rem !important;
+    margin-left: 1.5rem !important;
+    font-size: 25px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img-redes {
+    display: flex;
+    width: 100%;
 }
