@@ -40,8 +40,12 @@ const handleSearch = () => {
             imagen.src = producto.img;
             imagen.classList.add("card");
             card.appendChild(imagen);
-
             resultList.appendChild(card);
+
+            const precio = document.createElement("precio");
+            precio.textContent = producto.precio;
+            card.appendChild(precio);
+
         });
         noResults.style.display = "none";
     }
